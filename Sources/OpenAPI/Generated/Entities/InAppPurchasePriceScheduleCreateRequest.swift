@@ -26,26 +26,31 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable {
 				public struct Data: Codable, Identifiable {
 					public var type: `Type`
 					public var id: String
+					public var lid: String
 
 					public enum `Type`: String, Codable, CaseIterable {
 						case inAppPurchases
 					}
 
-					public init(type: `Type`, id: String) {
+					public init(type: `Type`, id: String?, lid: String?) {
 						self.type = type
 						self.id = id
+						self.lid = lid
 					}
 
 					public init(from decoder: Decoder) throws {
 						let values = try decoder.container(keyedBy: StringCodingKey.self)
 						self.type = try values.decode(`Type`.self, forKey: "type")
 						self.id = try values.decode(String.self, forKey: "id")
+						self.lid = try values.decode(String.self, forKey: "lid")
 					}
 
 					public func encode(to encoder: Encoder) throws {
 						var values = encoder.container(keyedBy: StringCodingKey.self)
 						try values.encode(type, forKey: "type")
 						try values.encode(id, forKey: "id")
+						try values.encode(lid, forKey: "lid")
+
 					}
 				}
 
