@@ -124,7 +124,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable {
 					public init(type: `Type`, id: String?, lid: String?) {
 						self.type = type
 						self.id = id
-						self.id = lid
+						self.lid = lid
 					}
 
 					public init(from decoder: Decoder) throws {
